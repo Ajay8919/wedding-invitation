@@ -1,50 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
 
 /**
  * Persistent floating music control. Drop an mp3 at /public/music/wedding-music.mp3
  * to enable playback — the button stays visible either way so the layout always
  * matches the reference site, but silently no-ops if the file is missing.
+ *
+ * Playback itself is owned by MusicProvider (see useBackgroundMusic) and
+ * started from the envelope's click handler, not from here — by the time
+ * this button mounts on the Home page, autoplay may already be blocked by
+ * the browser if it wasn't started directly inside a user gesture.
  */
 export function MusicToggle() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    const audio = new Audio("/music/wedding-music.mp3");
-    audio.loop = true;
-    audio.volume = 0.5;
-    audioRef.current = audio;
-
-    // Try to start the music as soon as the Home page mounts. By this point
-    // the user has already tapped the envelope and scrolled, so browsers'
-    // "needs a user gesture first" autoplay rule is already satisfied — this
-    // isn't a cold-load autoplay attempt.
-    audio
-      .play()
-      .then(() => setPlaying(true))
-      .catch(() => {
-        // Autoplay blocked (or file missing) — leave the button in its
-        // paused state so the user can start it with a tap instead.
-      });
-
-    return () => {
-      audio.pause();
-    };
-  }, []);
-
-  const toggle = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-    } else {
-      audio.play().catch(() => {
-        /* file missing or autoplay blocked — ignore */
-      });
-      setPlaying(true);
-    }
-  };
+  const { playing, toggle } = useBackgroundMusic();
 
   return (
     <button

@@ -14,24 +14,16 @@ export function AboutCoupleSection() {
       <SectionDivider />
 
       <div className="couple-portraits">
-        <div>
+        <div className="portrait-block">
           <div className="portrait">
-            <img
-              src={groomPhoto}
-              alt={d.couple.groomShort[lang]}
-              style={{
-                objectPosition: "37% 15%",
-                transform: "scale(2.1)",
-                transformOrigin: "37% 15%",
-              }}
-            />
+            <img src={groomPhoto} alt={d.couple.groomShort[lang]} />
           </div>
           <div className="portrait-label">{d.aboutCouple.groomLabel[lang]}</div>
           <div className="portrait-name">{d.couple.groomShort[lang]}</div>
           <p className="portrait-sub">{d.couple.groomParents[lang]}</p>
         </div>
 
-        <div>
+        <div className="portrait-block">
           <div className="portrait">
             <img src={bridePhoto} alt={d.couple.brideShort[lang]} />
           </div>

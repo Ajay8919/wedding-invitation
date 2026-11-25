@@ -822,9 +822,18 @@ a {
   margin: 2rem 0;
 }
 
+.portrait-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
+}
+
 .portrait {
   width: 160px;
   height: 160px;
+  margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--gold);
@@ -957,39 +966,53 @@ a {
   text-align: center;
 }
 
+/* Photo-collage gallery: a 2-column masonry of white polaroid-style frames
+   at natural aspect ratios (not forced into uniform squares), more columns
+   as the screen widens. */
 .gallery-grid {
-  column-count: 1;
-  column-gap: 1rem;
-  max-width: 1100px;
+  column-count: 2;
+  column-gap: 10px;
+  max-width: 900px;
   margin: 2rem auto 0;
 }
 
 @media (min-width: 640px) {
   .gallery-grid {
-    column-count: 2;
+    column-count: 3;
+    column-gap: 14px;
   }
 }
 
 @media (min-width: 960px) {
   .gallery-grid {
-    column-count: 3;
+    column-count: 4;
   }
 }
 
 .gallery-item {
-  border: 1px solid var(--gold);
-  background: var(--cream);
-  padding: 6px;
-  margin-bottom: 1rem;
-  break-inside: avoid;
-  cursor: pointer;
   display: inline-block;
   width: 100%;
+  break-inside: avoid;
+  margin-bottom: 10px;
+  background: #fff;
+  padding: 6px 6px 8px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(58, 15, 10, 0.22);
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .gallery-item {
+    margin-bottom: 14px;
+    padding: 8px 8px 10px;
+  }
 }
 
 .gallery-item img {
+  display: block;
   width: 100%;
   height: auto;
+  border-radius: 3px;
 }
 
 /* ================= LIGHTBOX ================= */

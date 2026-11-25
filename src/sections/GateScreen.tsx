@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { weddingData } from "../data/weddingData";
 import { useLanguage } from "../hooks/useLanguage";
+import { useBackgroundMusic } from "../hooks/useBackgroundMusic";
 import { LanguageToggle } from "../components/LanguageToggle";
 
 interface GateScreenProps {
@@ -9,6 +10,7 @@ interface GateScreenProps {
 
 export function GateScreen({ onEnter }: GateScreenProps) {
   const { lang } = useLanguage();
+  const { startFromGesture } = useBackgroundMusic();
   const [opened, setOpened] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
@@ -17,6 +19,12 @@ export function GateScreen({ onEnter }: GateScreenProps) {
   // click required.
   const handleOpen = () => {
     if (opened) return;
+    // Must be called synchronously, right here in the click handler — mobile
+    // Safari (and Chrome, to a lesser extent) only allows audio.play() to
+    // succeed when it happens directly inside a user gesture's call stack.
+    // Starting it later (e.g. once the Home page mounts) gets silently
+    // blocked on real devices even though this test browser allows it.
+    startFromGesture();
     setOpened(true);
     window.setTimeout(() => {
       setLeaving(true);

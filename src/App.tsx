@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LanguageProvider, useLanguage } from "./hooks/useLanguage";
+import { MusicProvider } from "./hooks/useBackgroundMusic";
 import { NavBar, navSections } from "./components/NavBar";
 import { MusicToggle } from "./components/MusicToggle";
 import { GateScreen } from "./sections/GateScreen";
@@ -86,7 +87,9 @@ function AppInner() {
 function App() {
   return (
     <LanguageProvider>
-      <AppInner />
+      <MusicProvider>
+        <AppInner />
+      </MusicProvider>
     </LanguageProvider>
   );
 }
