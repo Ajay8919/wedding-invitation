@@ -24,7 +24,12 @@ export function MusicProvider({ children }: { children: ReactNode }) {
 
   const getAudio = () => {
     if (!audioRef.current) {
-      const audio = new Audio("/music/wedding-music.mp3");
+      // A root-absolute "/music/..." path 404s once this is deployed under
+      // a GitHub Pages project subpath (e.g. /wedding-invitation/) — it
+      // only "worked" in local dev because the dev server is served from
+      // the domain root. BASE_URL reflects the configured Vite base, so
+      // this resolves correctly in both places.
+      const audio = new Audio(`${import.meta.env.BASE_URL}music/wedding-music.mp3`);
       audio.loop = true;
       audio.volume = 0.5;
       audioRef.current = audio;
