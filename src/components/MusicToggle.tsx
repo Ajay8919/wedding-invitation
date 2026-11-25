@@ -20,7 +20,16 @@ export function MusicToggle() {
       aria-label={playing ? "Pause music" : "Play music"}
       title={playing ? "Pause music" : "Play music"}
     >
-      {playing ? "❚❚" : "▶"}
+      {playing ? (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <rect x="5" y="4" width="5" height="16" rx="1.5" fill="currentColor" />
+          <rect x="14" y="4" width="5" height="16" rx="1.5" fill="currentColor" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M6 4.5v15a1 1 0 0 0 1.53.85l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 6 4.5z" fill="currentColor" />
+        </svg>
+      )}
     </button>
   );
 }
