@@ -62,8 +62,8 @@ export const weddingData = {
   venue: {
     name: { en: "C.K. Convention Hall", te: "సి.కె. కన్వెన్షన్ హాల్" },
     address: {
-      en: "Dargapeta, Kandrakota Road, Chepala Market Edurvidhi, Peddapuram",
-      te: "దర్గా పేట, కాండ్రకోట రోడ్, చేపల మార్కెట్ ఎదురువీధి, పెద్దాపురం",
+      en: "Darga Center, Kandrakota Road, Chepala Market Edurvidhi, Peddapuram",
+      te: "దర్గా సెంటర్, కాండ్రకోట రోడ్, చేపల మార్కెట్ ఎదురువీధి, పెద్దాపురం",
     },
     lat: 17.081958770751953,
     lng: 82.13414001464844,
@@ -164,7 +164,6 @@ export const weddingData = {
   gallery: [
     { src: "photo-1.jpg", alt: "Bride holding ceremonial coconut" },
     { src: "photo-2.jpg", alt: "Bride with hands folded in blessing" },
-    { src: "photo-3.jpg", alt: "Groom and bride standing together" },
     { src: "photo-4.jpg", alt: "Groom and bride seated with garlands" },
     { src: "photo-5.jpg", alt: "Groom and bride standing close" },
     { src: "photo-6.jpg", alt: "Groom and bride full length portrait" },
